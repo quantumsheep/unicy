@@ -37,15 +37,15 @@ public:
 
     static constexpr Vector3Generic<T> negativeInfinity()
     {
-        static_assert(std::numeric_limits<T>::is_iec559, "IEEE 754 required for infinity values.");
+        static_assert(std::numeric_limits<T>::has_infinity, "Type doesn't have infinity.");
 
         constexpr auto infinity = std::numeric_limits<T>::infinity();
         return Vector3Generic<T>(-infinity);
     }
 
-    static constexpr Vector3Generic<T> positiveInfinity(typename std::enable_if<std::numeric_limits<T>::has_infinity>::type * = 0)
+    static constexpr Vector3Generic<T> positiveInfinity()
     {
-        static_assert(std::numeric_limits<T>::is_iec559, "IEEE 754 required for infinity values.");
+        static_assert(std::numeric_limits<T>::has_infinity, "Type doesn't have infinity.");
 
         constexpr auto infinity = std::numeric_limits<T>::infinity();
         return Vector3Generic<T>(infinity);
@@ -138,6 +138,21 @@ public:
         this->z *= r;
 
         return *this;
+    }
+
+    T operator[](int i) const
+    {
+        switch (i)
+        {
+        case 0:
+            return this->x;
+        case 1:
+            return this->y;
+        case 2:
+            return this->z;
+        default:
+            throw std::out_of_range(std::string("Vector3Generic<") + typeid(T).name() + ">[" + std::to_string(i) + "] : index out of range.");
+        }
     }
 };
 
