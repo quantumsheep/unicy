@@ -1,6 +1,6 @@
 #include <unicy/Vector3Generic.hpp>
 
-#include <cmath>
+#include <unicy/Mathf.hpp>
 
 namespace Unicy
 {
@@ -18,7 +18,7 @@ std::string Vector3Generic<T, E>::to_string() const
 template <typename T, typename E>
 T Vector3Generic<T, E>::Magnitude(const Vector3Generic<T> &v)
 {
-    return static_cast<T>(std::sqrtf((v.x * v.x) + (v.y * v.y) + (v.z * v.z)));
+    return static_cast<T>(Mathf::Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z)));
 }
 
 template <typename T, typename E>

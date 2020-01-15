@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unicy/Mathf.hpp>
+
 #include <unicy/Vector3Generic.hpp>
 
 #include <unicy/Vector3.hpp>
