@@ -103,6 +103,8 @@ inline float Lerp(const float &a, const float &b, const float &t)
     return (a + t * (b - a));
 }
 
+inline float Sin(const float &f) { return std::sinf(f); }
+
 inline float Sqrt(const float &f) { return std::sqrtf(f); }
 
 } // namespace Unicy::Mathf
