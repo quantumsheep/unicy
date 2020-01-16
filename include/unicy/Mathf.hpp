@@ -20,11 +20,11 @@ constexpr float Rad2Deg = 57.29578f;
 constexpr float Epsilon = std::numeric_limits<float>::epsilon();
 
 inline float Abs(const float &f) { return std::abs(f); }
-inline int Abs(int f) { return std::abs(f); }
+inline int Abs(const int &f) { return std::abs(f); }
 
 inline float Acos(const float &f) { return std::acosf(f); }
 
-inline float Approximately(float a, float b)
+inline float Approximately(const float &a, const float &b)
 {
     return (Mathf::Abs(a - b) < Mathf::Epsilon);
 }
@@ -33,7 +33,7 @@ inline float Asin(const float &f) { return std::asinf(f); }
 
 inline float Atan(const float &f) { return std::atanf(f); }
 
-inline float Atan2(float y, float x) { return std::atan2f(y, x); }
+inline float Atan2(const float &y, const float &x) { return std::atan2f(y, x); }
 
 inline float Ceil(const float &f) { return std::ceilf(f); }
 inline int CeilToInt(const float &f) { return static_cast<int>(Mathf::Ceil(f)); }
