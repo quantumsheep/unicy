@@ -29,7 +29,7 @@ inline float Approximately(float a, float b)
     return (Mathf::Abs(a - b) < Mathf::Epsilon);
 }
 
-inline float Asinc(const float &f) { return std::asinf(f); }
+inline float Asin(const float &f) { return std::asinf(f); }
 
 inline float Atan(const float &f) { return std::atanf(f); }
 
