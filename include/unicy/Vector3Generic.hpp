@@ -140,7 +140,7 @@ public:
         return *this;
     }
 
-    T operator[](int i) const
+    T &operator[](int i)
     {
         switch (i)
         {
