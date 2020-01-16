@@ -73,23 +73,3 @@ Quaternion Quaternion::FromEulerRad(const Vector3 &angles)
 
     return q;
 }
-
-Vector3 Quaternion::NormalizeAngles(Vector3 angles)
-{
-    angles.x = Quaternion::NormalizeAngle(angles.x);
-    angles.y = Quaternion::NormalizeAngle(angles.y);
-    angles.z = Quaternion::NormalizeAngle(angles.z);
-
-    return angles;
-}
-
-float Quaternion::NormalizeAngle(float angle)
-{
-    while (angle > 360)
-        angle -= 360;
-
-    while (angle < 0)
-        angle += 360;
-
-    return angle;
-}

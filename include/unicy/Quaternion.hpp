@@ -36,9 +36,6 @@ public:
 private:
     static Vector3 ToEulerRad(const Quaternion &rotation);
     static Quaternion FromEulerRad(const Vector3 &angles);
-
-    static Vector3 NormalizeAngles(Vector3 angle);
-    static float NormalizeAngle(float angle);
 };
 
 } // namespace Unicy
