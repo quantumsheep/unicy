@@ -151,7 +151,7 @@ public:
         case 2:
             return this->z;
         default:
-            throw std::out_of_range(std::string("Vector3Generic<") + typeid(T).name() + ">[" + std::to_string(i) + "] : index out of range.");
+            throw std::out_of_range("Vector3Generic<T>[" + std::to_string(i) + "] : index out of range.");
         }
     }
 };
