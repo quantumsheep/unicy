@@ -67,7 +67,7 @@ public:
         return this->values[i];
     }
 
-    inline std::array<T, C> operator[](int i) const
+    inline const std::array<T, C> &operator[](int i) const
     {
         return this->values[i];
     }
