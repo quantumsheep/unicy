@@ -33,22 +33,19 @@ public:
         return os << r.to_string();
     }
 
-private:
-    template <typename A, typename B>
-    using MulT = decltype(std::declval<A &>() * std::declval<B &>());
-
-public:
     template <typename Tl, int Rl, int Cl, typename Tr, int Rr, int Cr>
-    friend std::enable_if_t<(Cl == Rr), Matrix<MulT<Tl, Tr>, Rl, Cr>>
+    friend std::enable_if_t<(Cl == Rr), Matrix<decltype(std::declval<Tl &>() * std::declval<Tr &>()), Rl, Cr>>
     operator*(const Matrix<Tl, Rl, Cl> &l, const Matrix<Tr, Rr, Cr> &r)
     {
-        Matrix<MulT<Tl, Tr>, Rl, Cr> mat;
+        using MulT = decltype(std::declval<Tl &>() * std::declval<Tr &>());
+
+        Matrix<MulT, Rl, Cr> mat;
 
         for (int i = 0; i < Rl; i++)
         {
             for (int j = 0; j < Cr; j++)
             {
-                auto value = MulT<Tl, Tr>();
+                auto value = MulT();
 
                 for (int k = 0; k < Rr; k++)
                 {
