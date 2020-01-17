@@ -59,6 +59,56 @@ public:
         return mat;
     }
 
+    template <typename Tl, int Rl, int Cl, typename Ry>
+    friend Matrix<decltype(std::declval<Tl &>() * std::declval<Ry &>()), Rl, Cl> operator*(const Matrix<Tl, Rl, Cl> &l, const Ry &r)
+    {
+        Matrix<decltype(std::declval<Tl &>() * std::declval<Ry &>()), Rl, Cl> mat;
+
+        for (int y = 0; y < Rl; y++)
+        {
+            for (int x = 0; x < Cl; x++)
+            {
+                mat[y][x] = l[y][x] * r;
+            }
+        }
+
+        return mat;
+    }
+
+    template <typename Tr, int Rr, int Cr>
+    Matrix<T, R, C> &operator*=(const Matrix<Tr, Rr, Cr> &r)
+    {
+        Matrix<T, R, C> mat = static_cast<Matrix<T, Cr, R>>(*this * r);
+        this->values = mat.values;
+
+        return *this;
+    }
+
+    template <typename Ry>
+    Matrix<T, R, C> &operator*=(const Ry &r)
+    {
+        Matrix<T, R, C> mat = *this * static_cast<T>(r);
+        this->values = mat.values;
+
+        return *this;
+    }
+
+    template <typename Ty, int Ry, int Cy>
+    operator Matrix<Ty, Ry, Cy>()
+    {
+        auto mat = Matrix<Ty, Ry, Cy>();
+
+        for (int y = 0; y < Ry; y++)
+        {
+            for (int x = 0; x < Cy; x++)
+            {
+                mat[y][x] = static_cast<Ty>((*this)[y][x]);
+            }
+        }
+
+        return mat;
+    }
+
     inline std::array<T, C> &operator[](int i)
     {
         return this->values[i];
