@@ -9,6 +9,8 @@
 #include <unicy/Vector3.hpp>
 #include <unicy/Vector3Int.hpp>
 
+#include <unicy/Matrix.hpp>
+
 #include <unicy/Quaternion.hpp>
 
 #include <unicy/Debug.hpp>

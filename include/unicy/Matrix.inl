@@ -1,0 +1,29 @@
+#include <sstream>
+#include <unicy/Matrix.hpp>
+
+using namespace Unicy;
+
+template <typename T, int R, int C, typename E>
+std::string Matrix<T, R, C, E>::to_string() const
+{
+    std::stringstream stream;
+
+    for (int i = 0; i < R; i++)
+    {
+        stream << "(";
+
+        for (int j = 0; j < C; j++)
+        {
+            stream << this->values[i][j];
+
+            if (j < (C - 1))
+            {
+                stream << ", ";
+            }
+        }
+
+        stream << ")\n";
+    }
+
+    return stream.str();
+}
