@@ -145,7 +145,7 @@ public:
         return *this;
     }
 
-    T &operator[](int i)
+    T &operator[](const int &i)
     {
         switch (i)
         {
