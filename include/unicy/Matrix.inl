@@ -22,7 +22,12 @@ std::string Matrix<T, R, C>::to_string() const
             }
         }
 
-        stream << ")\n";
+        stream << ")";
+
+        if (i < (R - 1))
+        {
+            stream << std::endl;
+        }
     }
 
     return stream.str();
