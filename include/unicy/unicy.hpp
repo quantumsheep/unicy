@@ -9,6 +9,8 @@
 #include <unicy/Vector3.hpp>
 #include <unicy/Vector3Int.hpp>
 
+#include <unicy/Vector2Generic.hpp>
+
 #include <unicy/Matrix.hpp>
 #include <unicy/Matrix4x4.hpp>
 
