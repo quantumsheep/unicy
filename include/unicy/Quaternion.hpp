@@ -11,16 +11,16 @@ namespace Unicy
 class Quaternion
 {
 public:
-    float w;
     float x;
     float y;
     float z;
+    float w;
 
     Quaternion() = default;
     Quaternion(const Quaternion &) = default;
     Quaternion(Quaternion &&) = default;
 
-    Quaternion(const float &w, const float &x, const float &y, const float &z) : w(w), x(x), y(y), z(z) {}
+    Quaternion(const float &x, const float &y, const float &z, const float &w) : x(x), y(y), z(z), w(w) {}
 
     static Quaternion Identity() { return Quaternion(1, 0, 0, 0); }
 
@@ -31,7 +31,7 @@ public:
 
     static inline float Magnitude(const Quaternion &q)
     {
-        return Mathf::Sqrt((q.w * q.w) + (q.x * q.x) + (q.y * q.y) + (q.z * q.z));
+        return Mathf::Sqrt((q.x * q.x) + (q.y * q.y) + (q.z * q.z) + (q.w * q.w));
     }
 
     static inline Quaternion Normalize(const Quaternion &q)
@@ -51,7 +51,8 @@ public:
     friend inline Quaternion operator*(const Quaternion &l, const R &r)
     {
         static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
-        return Quaternion(l.x * r, l.y * r, l.z * r);
+
+        return Quaternion(l.x * r, l.y * r, l.z * r, l.w * r);
     }
 
     template <typename R>
@@ -59,7 +60,7 @@ public:
     {
         static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
 
-        return Vector3Generic<decltype(l.x / r)>(l.x / r, l.y / r, l.z / r);
+        return Quaternion(l.x / r, l.y / r, l.z / r, l.w * r);
     }
 
 private:
