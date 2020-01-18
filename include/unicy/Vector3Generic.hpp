@@ -138,6 +138,8 @@ public:
     template <typename R>
     Vector3Generic<T> &operator*=(const R &r)
     {
+        static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
+
         this->x *= r;
         this->y *= r;
         this->z *= r;
