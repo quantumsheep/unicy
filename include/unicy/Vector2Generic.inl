@@ -1,4 +1,4 @@
-#include <unicy/Vector3Generic.hpp>
+#include <unicy/Vector2Generic.hpp>
 
 #include <unicy/Mathf.hpp>
 
@@ -6,7 +6,7 @@ namespace Unicy
 {
 
 template <typename T>
-std::string Vector3Generic<T>::to_string() const
+std::string Vector2Generic<T>::to_string() const
 {
     auto x = std::to_string(this->x);
     auto y = std::to_string(this->y);
@@ -15,15 +15,15 @@ std::string Vector3Generic<T>::to_string() const
 }
 
 template <typename T>
-T Vector3Generic<T>::Magnitude(const Vector3Generic<T> &v)
+T Vector2Generic<T>::Magnitude(const Vector2Generic<T> &v)
 {
     return static_cast<T>(Mathf::Sqrt((v.x * v.x) + (v.y * v.y)));
 }
 
 template <typename T>
-Vector3Generic<T> Vector3Generic<T>::Normalize(const Vector3Generic<T> &v)
+Vector2Generic<T> Vector2Generic<T>::Normalize(const Vector2Generic<T> &v)
 {
-    return v / Vector3Generic::Magnitude(v);
+    return v / Vector2Generic::Magnitude(v);
 }
 
 } // namespace Unicy
