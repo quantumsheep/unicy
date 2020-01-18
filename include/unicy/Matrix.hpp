@@ -42,20 +42,16 @@ public:
 
         using MulT = decltype(std::declval<Tl &>() * std::declval<Tr &>());
 
-        Matrix<MulT, Rl, Cr> mat;
+        auto mat = Matrix<MulT, Rl, Cr>;
 
         for (size_t i = 0; i < Rl; i++)
         {
             for (size_t j = 0; j < Cr; j++)
             {
-                auto value = MulT();
-
                 for (size_t k = 0; k < Rr; k++)
                 {
-                    value += l[i][k] * r[k][j];
+                    mat[i][j] += l[i][k] * r[k][j];
                 }
-
-                mat[i][j] = value;
             }
         }
 
@@ -76,6 +72,30 @@ public:
         }
 
         return mat;
+    }
+
+    template <typename Tl, size_t Rl, size_t Cl, typename Tr, size_t Rr, size_t Cr>
+    friend constexpr bool operator==(const Matrix<Tl, Rl, Cl> &l, const Matrix<Tr, Rr, Cr> &r)
+    {
+        if (Rl != Rr || Cl != Cr)
+            return false;
+
+        for (int y = 0; y < Rl; y++)
+        {
+            for (int x = 0; x < Cl; x++)
+            {
+                if (l[y][x] != r[y][x])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    template <typename Tl, size_t Rl, size_t Cl, typename Tr, size_t Rr, size_t Cr>
+    friend constexpr bool operator!=(const Matrix<Tl, Rl, Cl> &l, const Matrix<Tr, Rr, Cr> &r)
+    {
+        return !(l == r);
     }
 
     template <typename Tr, size_t Rr, size_t Cr>
