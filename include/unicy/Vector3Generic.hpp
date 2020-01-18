@@ -7,7 +7,7 @@
 namespace Unicy
 {
 
-template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+template <typename T>
 class Vector3Generic
 {
 public:
@@ -92,15 +92,19 @@ public:
         return Vector3Generic<decltype(l.x / r.x)>(l.x / r.x, l.y / r.y, l.z / r.z);
     }
 
-    template <typename V, typename R, typename = typename std::enable_if<std::is_arithmetic<R>::value, R>::type>
+    template <typename V, typename R>
     friend inline auto operator*(const Vector3Generic<V> &l, const R &r) -> Vector3Generic<decltype(l.x * r)>
     {
+        static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
+
         return Vector3Generic<decltype(l.x * r)>(l.x * r, l.y * r, l.z * r);
     }
 
-    template <typename V, typename R, typename = typename std::enable_if<std::is_arithmetic<R>::value, R>::type>
+    template <typename V, typename R>
     friend inline auto operator/(const Vector3Generic<V> &l, const R &r) -> Vector3Generic<decltype(l.x / r)>
     {
+        static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
+
         return Vector3Generic<decltype(l.x / r)>(l.x / r, l.y / r, l.z / r);
     }
 
@@ -131,7 +135,8 @@ public:
         return *this;
     }
 
-    Vector3Generic<T> &operator*=(const T &r)
+    template <typename R>
+    Vector3Generic<T> &operator*=(const R &r)
     {
         this->x *= r;
         this->y *= r;

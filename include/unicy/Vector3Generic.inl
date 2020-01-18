@@ -5,8 +5,8 @@
 namespace Unicy
 {
 
-template <typename T, typename E>
-std::string Vector3Generic<T, E>::to_string() const
+template <typename T>
+std::string Vector3Generic<T>::to_string() const
 {
     auto x = std::to_string(this->x);
     auto y = std::to_string(this->y);
@@ -15,14 +15,14 @@ std::string Vector3Generic<T, E>::to_string() const
     return "(" + x + ", " + y + ", " + z + ")";
 }
 
-template <typename T, typename E>
-T Vector3Generic<T, E>::Magnitude(const Vector3Generic<T> &v)
+template <typename T>
+T Vector3Generic<T>::Magnitude(const Vector3Generic<T> &v)
 {
     return static_cast<T>(Mathf::Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z)));
 }
 
-template <typename T, typename E>
-Vector3Generic<T> Vector3Generic<T, E>::Normalize(const Vector3Generic<T> &v)
+template <typename T>
+Vector3Generic<T> Vector3Generic<T>::Normalize(const Vector3Generic<T> &v)
 {
     return v / Vector3Generic::Magnitude(v);
 }
