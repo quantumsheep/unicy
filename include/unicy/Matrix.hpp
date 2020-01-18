@@ -42,7 +42,7 @@ public:
 
         using MulT = decltype(std::declval<Tl &>() * std::declval<Tr &>());
 
-        auto mat = Matrix<MulT, Rl, Cr>;
+        auto mat = Matrix<MulT, Rl, Cr>();
 
         for (size_t i = 0; i < Rl; i++)
         {
