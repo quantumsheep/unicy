@@ -34,11 +34,32 @@ public:
         return Mathf::Sqrt((q.w * q.w) + (q.x * q.x) + (q.y * q.y) + (q.z * q.z));
     }
 
+    static inline Quaternion Normalize(const Quaternion &q)
+    {
+        return q / Quaternion::Magnitude(q);
+    }
+
     inline float magnitude() { return Quaternion::Magnitude(*this); }
+    inline Quaternion normalized() { return Quaternion::Normalize(*this); }
 
     friend inline std::ostream &operator<<(std::ostream &os, const Quaternion &r)
     {
         return os << r.to_string();
+    }
+
+    template <typename R>
+    friend inline Quaternion operator*(const Quaternion &l, const R &r)
+    {
+        static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
+        return Quaternion(l.x * r, l.y * r, l.z * r);
+    }
+
+    template <typename R>
+    friend inline Quaternion operator/(const Quaternion &l, const R &r)
+    {
+        static_assert(std::is_arithmetic<R>::value, "rvalue must be an arithmetic type.");
+
+        return Vector3Generic<decltype(l.x / r)>(l.x / r, l.y / r, l.z / r);
     }
 
 private:
