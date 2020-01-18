@@ -3,8 +3,8 @@
 
 using namespace Unicy;
 
-template <typename T, int R, int C, typename E>
-std::string Matrix<T, R, C, E>::to_string() const
+template <typename T, int R, int C>
+std::string Matrix<T, R, C>::to_string() const
 {
     std::stringstream stream;
 

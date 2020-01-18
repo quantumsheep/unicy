@@ -7,15 +7,17 @@
 namespace Unicy
 {
 
-template <typename T, int R, int C, typename = std::enable_if_t<(R > 0 && C > 0), bool>>
+template <typename T, int R, int C>
 class Matrix
 {
 public:
     std::array<std::array<T, C>, R> values = {std::array<T, C>()};
 
     template <typename Ty = T, int Ry = R, int Cy = C>
-    static constexpr std::enable_if_t<(Ry == Cy), Matrix<Ty, Ry, Cy>> identity()
+    static constexpr Matrix<Ty, Ry, Cy> identity()
     {
+        static_assert(Ry == Cy, "Identity matrix can only be generated for square matrix.");
+
         Matrix<Ty, Ry, Cy> mat;
 
         for (int i = 0; i < R && i < C; i++)
@@ -34,9 +36,10 @@ public:
     }
 
     template <typename Tl, int Rl, int Cl, typename Tr, int Rr, int Cr>
-    friend std::enable_if_t<(Cl == Rr), Matrix<decltype(std::declval<Tl &>() * std::declval<Tr &>()), Rl, Cr>>
-    operator*(const Matrix<Tl, Rl, Cl> &l, const Matrix<Tr, Rr, Cr> &r)
+    friend auto operator*(const Matrix<Tl, Rl, Cl> &l, const Matrix<Tr, Rr, Cr> &r) -> Matrix<decltype(std::declval<Tl &>() * std::declval<Tr &>()), Rl, Cr>
     {
+        static_assert(Cl == Rr, "Right matrix rows count me be equal to left matrix columns count.");
+
         using MulT = decltype(std::declval<Tl &>() * std::declval<Tr &>());
 
         Matrix<MulT, Rl, Cr> mat;
@@ -60,7 +63,7 @@ public:
     }
 
     template <typename Tl, int Rl, int Cl, typename Ry>
-    friend Matrix<decltype(std::declval<Tl &>() * std::declval<Ry &>()), Rl, Cl> operator*(const Matrix<Tl, Rl, Cl> &l, const Ry &r)
+    friend auto operator*(const Matrix<Tl, Rl, Cl> &l, const Ry &r) -> Matrix<decltype(std::declval<Tl &>() * std::declval<Ry &>()), Rl, Cl>
     {
         Matrix<decltype(std::declval<Tl &>() * std::declval<Ry &>()), Rl, Cl> mat;
 
