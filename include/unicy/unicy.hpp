@@ -11,6 +11,9 @@
 
 #include <unicy/Vector2Generic.hpp>
 
+#include <unicy/Vector2.hpp>
+#include <unicy/Vector2Int.hpp>
+
 #include <unicy/Matrix.hpp>
 #include <unicy/Matrix4x4.hpp>
 
