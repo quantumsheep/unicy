@@ -19,4 +19,9 @@
 
 #include <unicy/Quaternion.hpp>
 
+#include <unicy/ui/imgui.hpp>
+
+#include <unicy/EnvironmentError.hpp>
+#include <unicy/Window.hpp>
+
 #include <unicy/Debug.hpp>
