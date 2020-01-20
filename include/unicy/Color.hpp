@@ -6,15 +6,25 @@
 namespace Unicy
 {
 
-struct Color
+class Color
 {
-    float r;
-    float g;
-    float b;
-    float a;
+private:
+    float *refs = nullptr;
 
-    Color(float r, float g, float b) : r(r), g(g), b(b) {}
-    Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
+public:
+    float &r;
+    float &g;
+    float &b;
+    float &a;
+
+    Color(float r, float g, float b) : Color(r, b, a, 1.0f) {}
+
+    Color(float r, float g, float b, float a)
+        : refs(new float[4]{r, g, b, a}),
+          r(refs[0]),
+          g(refs[1]),
+          b(refs[2]),
+          a(refs[3]) {}
 
     inline float &operator[](int i)
     {
@@ -31,6 +41,11 @@ struct Color
         default:
             throw std::out_of_range("Vector3Generic<T>[" + std::to_string(i) + "] : index out of range.");
         }
+    }
+
+    inline operator float *()
+    {
+        return this->refs;
     }
 };
 
