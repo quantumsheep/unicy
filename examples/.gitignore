@@ -1,5 +1,6 @@
 # Build directory
 */build
-out
-Debug
-Release
+*/out
+*/Debug
+*/Release
+*/imgui.ini
