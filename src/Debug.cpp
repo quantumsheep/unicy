@@ -1,6 +1,7 @@
 #include <unicy/Debug.hpp>
 
 #include <sstream>
+#include <chrono>
 
 static std::string pad_time(const long &t)
 {
