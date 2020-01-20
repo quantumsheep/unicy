@@ -8,15 +8,19 @@ namespace Unicy::Debug
 
 std::string TimeString();
 
-inline void Log(const std::string &data)
+template <std::ostream &stream = std::cout, typename T, std::enable_if_t<has_insertion_operator<T>::value> * = nullptr>
+inline void Log(const T &obj, bool time = true)
 {
-    std::cout << Debug::TimeString() << data << std::endl;
+    if (time)
+        stream << Debug::TimeString();
+
+    stream << obj << std::endl;
 }
 
-template <typename T, std::enable_if_t<has_insertion_operator<T>::value> * = nullptr>
-inline void Log(const T &obj)
+template <typename... Args>
+inline void Log(FILE *stream, const char *fmt, const Args &... args)
 {
-    std::cout << Debug::TimeString() << obj << std::endl;
+    fprintf(stream, fmt, args...);
 }
 
 } // namespace Unicy::Debug
