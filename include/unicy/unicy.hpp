@@ -26,4 +26,6 @@
 
 #include <unicy/Transform.hpp>
 
+#include <unicy/GameObject.hpp>
+
 #include <unicy/Debug.hpp>
