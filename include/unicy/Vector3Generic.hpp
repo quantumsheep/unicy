@@ -147,6 +147,8 @@ public:
         return *this;
     }
 
+    Vector3Generic<T> &operator=(const Vector3Generic<T> &r) = default;
+
     T &operator[](const int &i)
     {
         switch (i)
