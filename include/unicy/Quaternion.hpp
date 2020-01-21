@@ -16,10 +16,10 @@ public:
     float z;
     float w;
 
-    Quaternion() = default;
     Quaternion(const Quaternion &) = default;
     Quaternion(Quaternion &&) = default;
 
+    Quaternion() : Quaternion(0.0f, 0.0f, 0.0f, 1.0f) {}
     Quaternion(const float &x, const float &y, const float &z, const float &w) : x(x), y(y), z(z), w(w) {}
 
     static Quaternion Identity() { return Quaternion(1, 0, 0, 0); }
@@ -62,6 +62,8 @@ public:
 
         return Quaternion(l.x / r, l.y / r, l.z / r, l.w * r);
     }
+
+    Quaternion &operator=(const Quaternion &r) = default;
 
 private:
     static Vector3 ToEulerRad(const Quaternion &rotation);
