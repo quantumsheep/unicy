@@ -28,4 +28,6 @@
 
 #include <unicy/GameObject.hpp>
 
+#include <unicy/Scene.hpp>
+
 #include <unicy/Debug.hpp>
