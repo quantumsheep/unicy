@@ -24,4 +24,6 @@
 #include <unicy/EnvironmentError.hpp>
 #include <unicy/Window.hpp>
 
+#include <unicy/Transform.hpp>
+
 #include <unicy/Debug.hpp>
