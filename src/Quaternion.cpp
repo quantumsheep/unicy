@@ -58,12 +58,12 @@ Quaternion Quaternion::FromEulerRad(const Vector3 &angles)
     auto pitch = angles.y;
     auto yaw = angles.z;
 
-    double cy = Mathf::Cos(yaw * 0.5f);
-    double sy = Mathf::Sin(yaw * 0.5f);
-    double cp = Mathf::Cos(pitch * 0.5f);
-    double sp = Mathf::Sin(pitch * 0.5f);
-    double cr = Mathf::Cos(roll * 0.5f);
-    double sr = Mathf::Sin(roll * 0.5f);
+    float cy = Mathf::Cos(yaw * 0.5f);
+    float sy = Mathf::Sin(yaw * 0.5f);
+    float cp = Mathf::Cos(pitch * 0.5f);
+    float sp = Mathf::Sin(pitch * 0.5f);
+    float cr = Mathf::Cos(roll * 0.5f);
+    float sr = Mathf::Sin(roll * 0.5f);
 
     Quaternion q;
     q.w = cy * cp * cr + sy * sp * sr;
